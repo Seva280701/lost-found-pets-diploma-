@@ -1,8 +1,8 @@
 """Main URL configuration."""
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
+
+from .views import serve_media
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,5 +11,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('reports/', include('reports.urls')),
     path('shelters/', include('shelters.urls')),
+    # Serve media in production (Django's static() returns 404 when DEBUG=False)
+    re_path(r'^media/(?P<path>.*)$', serve_media),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

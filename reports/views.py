@@ -24,17 +24,18 @@ def _can_edit_report(user, report):
 
 
 def _save_report_images(request, report, start_order):
-    """Save uploaded images for a report; show message if any fail (e.g. read-only disk)."""
+    """Save uploaded images for a report; show message if any fail (e.g. read-only disk). Returns count saved."""
     saved = 0
     for i, f in enumerate(request.FILES.getlist('images')[:10]):
         try:
             PetImage.objects.create(report=report, image=f, order=start_order + i)
             saved += 1
-        except (OSError, IOError) as e:
+        except (OSError, IOError):
             messages.warning(
                 request,
                 f'Photo "{getattr(f, "name", "?")}" could not be saved (storage error). Try again or use another image.',
             )
+    return saved
 
 
 def report_list(request):
@@ -126,8 +127,8 @@ def report_create(request):
             report.status = PetReport.STATUS_OPEN
             report.save()
             # Save uploaded photos (multiple via name="images")
-            _save_report_images(request, report, 0)
-            messages.success(request, 'Report created.')
+            n = _save_report_images(request, report, 0)
+            messages.success(request, 'Report created.' + (f' {n} photo(s) added.' if n else ''))
             return redirect('reports:detail', pk=report.pk)
         messages.error(request, 'Please fix the errors below.')
     else:
@@ -147,8 +148,8 @@ def report_edit(request, pk):
         if form.is_valid():
             form.save()
             start_order = report.images.count()
-            _save_report_images(request, report, start_order)
-            messages.success(request, 'Report updated.')
+            n = _save_report_images(request, report, start_order)
+            messages.success(request, 'Report updated.' + (f' {n} photo(s) added.' if n else ''))
             return redirect('reports:detail', pk=report.pk)
         messages.error(request, 'Please fix the errors below.')
     else:
