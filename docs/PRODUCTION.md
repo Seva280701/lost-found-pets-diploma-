@@ -21,6 +21,10 @@ Use this checklist when deploying Lost & Found Pets to a production environment.
 - [ ] Run `python manage.py collectstatic` and configure the web server (e.g. Nginx) to serve `STATIC_ROOT` at `/static/` and `MEDIA_ROOT` at `/media/`.
 - [ ] Or use a storage backend (e.g. S3) for media files and set `DEFAULT_FILE_STORAGE` and related settings.
 
+### Render
+
+- On **Render**, the app filesystem is read-only. This project sets `MEDIA_ROOT` to `/tmp/media` when `RENDER` is set, so report/shelter photo uploads work until the next deploy (then they are lost). For persistent uploads on Render, add a **Persistent Disk** and set `MEDIA_ROOT` to its mount path in environment.
+
 ## Email
 
 - [ ] Configure real email: set `EMAIL_BACKEND` to `django.core.mail.backends.smtp.EmailBackend` and provide `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USE_TLS`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` (or use a provider like SendGrid/Mailgun).

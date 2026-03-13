@@ -23,6 +23,20 @@ def _can_edit_report(user, report):
     return report.reporter_user_id == user.id
 
 
+def _save_report_images(request, report, start_order):
+    """Save uploaded images for a report; show message if any fail (e.g. read-only disk)."""
+    saved = 0
+    for i, f in enumerate(request.FILES.getlist('images')[:10]):
+        try:
+            PetImage.objects.create(report=report, image=f, order=start_order + i)
+            saved += 1
+        except (OSError, IOError) as e:
+            messages.warning(
+                request,
+                f'Photo "{getattr(f, "name", "?")}" could not be saved (storage error). Try again or use another image.',
+            )
+
+
 def report_list(request):
     """Reports list with filters: type, species, city/region, status, date."""
     qs = PetReport.objects.all().select_related('reporter_user').prefetch_related('images')
@@ -111,9 +125,8 @@ def report_create(request):
             report.reporter_user = request.user
             report.status = PetReport.STATUS_OPEN
             report.save()
-            # Optional: handle multiple images via request.FILES.getlist('images')
-            for i, f in enumerate(request.FILES.getlist('images')[:10]):
-                PetImage.objects.create(report=report, image=f, order=i)
+            # Save uploaded photos (multiple via name="images")
+            _save_report_images(request, report, 0)
             messages.success(request, 'Report created.')
             return redirect('reports:detail', pk=report.pk)
         messages.error(request, 'Please fix the errors below.')
@@ -133,8 +146,8 @@ def report_edit(request, pk):
         form = PetReportForm(request.POST, request.FILES, instance=report)
         if form.is_valid():
             form.save()
-            for i, f in enumerate(request.FILES.getlist('images')[:10]):
-                PetImage.objects.create(report=report, image=f, order=report.images.count() + i)
+            start_order = report.images.count()
+            _save_report_images(request, report, start_order)
             messages.success(request, 'Report updated.')
             return redirect('reports:detail', pk=report.pk)
         messages.error(request, 'Please fix the errors below.')
