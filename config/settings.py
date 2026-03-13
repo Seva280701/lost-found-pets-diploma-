@@ -67,9 +67,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database — PostgreSQL (recommended). Set USE_POSTGRES=1 and DB_* env vars.
-# Otherwise SQLite is used for local dev (thesis demo).
-if os.environ.get('USE_POSTGRES', '').lower() in ('1', 'true', 'yes'):
+# Database — PostgreSQL (recommended) or SQLite for local dev.
+# Priority:
+# 1) If DATABASE_URL is set (e.g. on Render), parse it.
+# 2) Else if USE_POSTGRES=1, use individual DB_* env vars.
+# 3) Else fall back to SQLite.
+database_url = os.environ.get('DATABASE_URL')
+
+if database_url:
+    # Basic URL parsing without extra dependencies
+    from urllib.parse import urlparse
+
+    parsed = urlparse(database_url)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': parsed.path.lstrip('/') or 'lostfound_pets',
+            'USER': parsed.username or '',
+            'PASSWORD': parsed.password or '',
+            'HOST': parsed.hostname or 'localhost',
+            'PORT': str(parsed.port or '5432'),
+        }
+    }
+elif os.environ.get('USE_POSTGRES', '').lower() in ('1', 'true', 'yes'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
