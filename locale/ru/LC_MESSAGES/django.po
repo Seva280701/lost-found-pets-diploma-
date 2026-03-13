@@ -1,0 +1,422 @@
+# Lost & Found Pets — Russian (Русский)
+msgid ""
+msgstr ""
+"Project-Id-Version: Lost & Found Pets\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-01 00:00+0000\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Lost & Found Pets"
+msgstr "Потерянные и найденные животные"
+
+msgid "Lost & Found Pets — Latvia"
+msgstr "Потерянные и найденные животные — Латвия"
+
+msgid "Lost & Found Pets — Latvian Animal Shelter Integration. Bachelor thesis project."
+msgstr "Потерянные и найденные животные — интеграция с приютами Латвии. Дипломный проект."
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Reports"
+msgstr "Объявления"
+
+msgid "Shelters"
+msgstr "Приюты"
+
+msgid "My Reports"
+msgstr "Мои объявления"
+
+msgid "Shelter Dashboard"
+msgstr "Панель приюта"
+
+msgid "Admin"
+msgstr "Администрирование"
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "Login"
+msgstr "Войти"
+
+msgid "Register"
+msgstr "Регистрация"
+
+msgid "One platform to report lost or found pets and connect with Latvian animal shelters."
+msgstr "Одна платформа для объявлений о потерянных и найденных животных и связи с приютами Латвии."
+
+msgid "View Lost Pets"
+msgstr "Потерянные"
+
+msgid "View Found Pets"
+msgstr "Найденные"
+
+msgid "Create Report"
+msgstr "Создать объявление"
+
+msgid "Login to Report"
+msgstr "Войдите, чтобы подать объявление"
+
+msgid "Shelter Directory"
+msgstr "Каталог приютов"
+
+msgid "Latest Open Reports"
+msgstr "Последние открытые объявления"
+
+msgid "No photo"
+msgstr "Нет фото"
+
+msgid "View all reports"
+msgstr "Все объявления"
+
+msgid "No open reports yet."
+msgstr "Пока нет открытых объявлений."
+
+msgid "Create the first one"
+msgstr "Создайте первое"
+
+msgid "after login"
+msgstr "после входа"
+
+msgid "Lost & Found Reports"
+msgstr "Объявления о потерянных и найденных"
+
+msgid "Create report"
+msgstr "Создать объявление"
+
+msgid "All types"
+msgstr "Все типы"
+
+msgid "Lost"
+msgstr "Потерян"
+
+msgid "Found"
+msgstr "Найден"
+
+msgid "All species"
+msgstr "Все виды"
+
+msgid "Dog"
+msgstr "Собака"
+
+msgid "Cat"
+msgstr "Кошка"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "All statuses"
+msgstr "Все статусы"
+
+msgid "Open"
+msgstr "Открыто"
+
+msgid "Resolved"
+msgstr "Решено"
+
+msgid "City/region"
+msgstr "Город/регион"
+
+msgid "Search text"
+msgstr "Поиск"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "No reports match your filters."
+msgstr "Нет объявлений по вашим фильтрам."
+
+msgid "Clear filters"
+msgstr "Сбросить фильтры"
+
+msgid "or"
+msgstr "или"
+
+msgid "create a report"
+msgstr "создать объявление"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Linked shelter"
+msgstr "Связанный приют"
+
+msgid "Location"
+msgstr "Место"
+
+msgid "Date reported"
+msgstr "Дата объявления"
+
+msgid "Color"
+msgstr "Окрас"
+
+msgid "Map unavailable (API key not configured)."
+msgstr "Карта недоступна (API-ключ не настроен)."
+
+msgid "No map location set. Edit report and use \"Geocode address to map\" to set coordinates."
+msgstr "Место на карте не указано. Отредактируйте объявление и нажмите «Геокодировать адрес на карту»."
+
+msgid "Contact reporter"
+msgstr "Связаться с автором"
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+msgid "Back to reports"
+msgstr "К объявлениям"
+
+msgid "Edit report"
+msgstr "Редактировать объявление"
+
+msgid "Create lost/found report"
+msgstr "Создать объявление о потере/находке"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Location on map"
+msgstr "Место на карте"
+
+msgid "Enter address above and click \"Geocode to map\", or click on the map to set coordinates."
+msgstr "Введите адрес выше и нажмите «Геокодировать на карту» или укажите точку на карте."
+
+msgid "Geocode address to map"
+msgstr "Геокодировать адрес на карту"
+
+msgid "Photos"
+msgstr "Фотографии"
+
+msgid "recommended — helps others recognize the pet"
+msgstr "рекомендуется — помогает другим опознать животное"
+
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Delete this report?"
+msgstr "Удалить это объявление?"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "You have no reports yet."
+msgstr "У вас пока нет объявлений."
+
+msgid "Create your first report"
+msgstr "Создайте первое объявление"
+
+msgid "All registered shelters with a set location appear on the map below. Shelter staff can set their location in"
+msgstr "Все зарегистрированные приюты с указанным местоположением отображаются на карте. Сотрудники могут указать место в"
+
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+msgid "No shelters registered yet."
+msgstr "Пока нет зарегистрированных приютов."
+
+msgid "Verified"
+msgstr "Проверено"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Email"
+msgstr "Эл. почта"
+
+msgid "Website"
+msgstr "Веб-сайт"
+
+msgid "Map not available. Shelter can set location in Shelter Dashboard using \"Geocode address to map\"."
+msgstr "Карта недоступна. Приют может указать место в панели приюта, нажав «Геокодировать адрес на карту»."
+
+msgid "Pets in care"
+msgstr "Животные в приюте"
+
+msgid "No pets currently listed."
+msgstr "Пока нет животных в списке."
+
+msgid "Contact this shelter"
+msgstr "Связаться с приютом"
+
+msgid "Back to directory"
+msgstr "К каталогу"
+
+msgid "Edit shelter"
+msgstr "Редактировать приют"
+
+msgid "Edit shelter profile"
+msgstr "Редактировать профиль приюта"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Species"
+msgstr "Вид"
+
+msgid "Intake date"
+msgstr "Дата поступления"
+
+msgid "Back to"
+msgstr "Назад к"
+
+msgid "Shelter"
+msgstr "Приют"
+
+msgid "Add pet"
+msgstr "Добавить животное"
+
+msgid "Import CSV"
+msgstr "Импорт CSV"
+
+msgid "View public page"
+msgstr "Публичная страница"
+
+msgid "Shelter pets"
+msgstr "Животные приюта"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Remove this pet?"
+msgstr "Удалить это животное?"
+
+msgid "No pets yet."
+msgstr "Пока нет животных."
+
+msgid "import from CSV"
+msgstr "импортировать из CSV"
+
+msgid "Required columns: species, description, intake_date. You must also provide address or both lat and lng. Optional: external_id, name, breed, color, sex, intake_location_text, status."
+msgstr "Обязательные колонки: species, description, intake_date. Нужен также address или lat и lng. По желанию: external_id, name, breed, color, sex, intake_location_text, status."
+
+msgid "Back to dashboard"
+msgstr "К панели"
+
+msgid "CSV file"
+msgstr "CSV-файл"
+
+msgid "Upload and preview"
+msgstr "Загрузить и предпросмотр"
+
+msgid "Valid"
+msgstr "Корректно"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Duplicate prevention: rows with external_id will be skipped if that ID already exists. Rows without external_id are deduplicated by hash."
+msgstr "Дубликаты: строки с external_id пропускаются, если такой ID уже есть. Остальные дедуплицируются по хешу."
+
+msgid "Confirm and import all"
+msgstr "Подтвердить и импортировать всё"
+
+msgid "Upload a different file"
+msgstr "Загрузить другой файл"
+
+msgid "Edit pet"
+msgstr "Редактировать животное"
+
+msgid "Photo (optional)"
+msgstr "Фото (по желанию)"
+
+msgid "Reset password"
+msgstr "Сбросить пароль"
+
+msgid "Reset your password"
+msgstr "Сброс пароля"
+
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "Введите эл. почту — мы отправим ссылку для сброса пароля."
+
+msgid "Send reset link"
+msgstr "Отправить ссылку"
+
+msgid "Back to login"
+msgstr "К входу"
+
+msgid "Email sent"
+msgstr "Письмо отправлено"
+
+msgid "Check your email"
+msgstr "Проверьте почту"
+
+msgid "If an account exists with that email, we've sent you a link to reset your password."
+msgstr "Если аккаунт с таким адресом есть, мы отправили ссылку для сброса пароля."
+
+msgid "Set new password"
+msgstr "Задать новый пароль"
+
+msgid "Set password"
+msgstr "Задать пароль"
+
+msgid "The reset link is invalid or has expired. Please request a new one."
+msgstr "Ссылка недействительна или устарела. Запросите новую."
+
+msgid "Request new link"
+msgstr "Запросить новую ссылку"
+
+msgid "Password reset complete"
+msgstr "Пароль сброшен"
+
+msgid "Your password has been set. You can now log in."
+msgstr "Пароль установлен. Теперь можно войти."
+
+msgid "Log in"
+msgstr "Войти"
+
+msgid "Import shelter pets (CSV)"
+msgstr "Импорт животных приюта (CSV)"
+
+msgid "Sex"
+msgstr "Пол"
+
+msgid "Page %(page)s of %(total)s"
+msgstr "Страница %(page)s из %(total)s"
+
+msgid "Total rows: %(total)s. Preview (first 10):"
+msgstr "Всего строк: %(total)s. Предпросмотр (первые 10):"

@@ -1,0 +1,423 @@
+# Lost & Found Pets — English (source)
+msgid ""
+msgstr ""
+"Project-Id-Version: Lost & Found Pets\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-01 00:00+0000\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Lost & Found Pets"
+msgstr "Lost & Found Pets"
+
+msgid "Lost & Found Pets — Latvia"
+msgstr "Lost & Found Pets — Latvia"
+
+msgid "Lost & Found Pets — Latvian Animal Shelter Integration. Bachelor thesis project."
+msgstr "Lost & Found Pets — Latvian Animal Shelter Integration. Bachelor thesis project."
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Reports"
+msgstr "Reports"
+
+msgid "Shelters"
+msgstr "Shelters"
+
+msgid "My Reports"
+msgstr "My Reports"
+
+msgid "Shelter Dashboard"
+msgstr "Shelter Dashboard"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "One platform to report lost or found pets and connect with Latvian animal shelters."
+msgstr "One platform to report lost or found pets and connect with Latvian animal shelters."
+
+msgid "View Lost Pets"
+msgstr "View Lost Pets"
+
+msgid "View Found Pets"
+msgstr "View Found Pets"
+
+msgid "Create Report"
+msgstr "Create Report"
+
+msgid "Login to Report"
+msgstr "Login to Report"
+
+msgid "Shelter Directory"
+msgstr "Shelter Directory"
+
+msgid "Latest Open Reports"
+msgstr "Latest Open Reports"
+
+msgid "No photo"
+msgstr "No photo"
+
+msgid "View all reports"
+msgstr "View all reports"
+
+msgid "No open reports yet."
+msgstr "No open reports yet."
+
+msgid "Create the first one"
+msgstr "Create the first one"
+
+msgid "after login"
+msgstr "after login"
+
+msgid "Lost & Found Reports"
+msgstr "Lost & Found Reports"
+
+msgid "Create report"
+msgstr "Create report"
+
+msgid "All types"
+msgstr "All types"
+
+msgid "Lost"
+msgstr "Lost"
+
+msgid "Found"
+msgstr "Found"
+
+msgid "All species"
+msgstr "All species"
+
+msgid "Dog"
+msgstr "Dog"
+
+msgid "Cat"
+msgstr "Cat"
+
+msgid "Other"
+msgstr "Other"
+
+msgid "All statuses"
+msgstr "All statuses"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Resolved"
+msgstr "Resolved"
+
+msgid "City/region"
+msgstr "City/region"
+
+msgid "Search text"
+msgstr "Search text"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "No reports match your filters."
+msgstr "No reports match your filters."
+
+msgid "Clear filters"
+msgstr "Clear filters"
+
+msgid "or"
+msgstr "or"
+
+msgid "create a report"
+msgstr "create a report"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Linked shelter"
+msgstr "Linked shelter"
+
+msgid "Location"
+msgstr "Location"
+
+msgid "Date reported"
+msgstr "Date reported"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Map unavailable (API key not configured)."
+msgstr "Map unavailable (API key not configured)."
+
+msgid "No map location set. Edit report and use \"Geocode address to map\" to set coordinates."
+msgstr "No map location set. Edit report and use \"Geocode address to map\" to set coordinates."
+
+msgid "Contact reporter"
+msgstr "Contact reporter"
+
+msgid "Send message"
+msgstr "Send message"
+
+msgid "Back to reports"
+msgstr "Back to reports"
+
+msgid "Edit report"
+msgstr "Edit report"
+
+msgid "Create lost/found report"
+msgstr "Create lost/found report"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Location on map"
+msgstr "Location on map"
+
+msgid "Enter address above and click \"Geocode to map\", or click on the map to set coordinates."
+msgstr "Enter address above and click \"Geocode to map\", or click on the map to set coordinates."
+
+msgid "Geocode address to map"
+msgstr "Geocode address to map"
+
+msgid "Photos"
+msgstr "Photos"
+
+msgid "recommended — helps others recognize the pet"
+msgstr "recommended — helps others recognize the pet"
+
+msgid "Save changes"
+msgstr "Save changes"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+msgid "Password confirmation"
+msgstr "Password confirmation"
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+msgid "Delete this report?"
+msgstr "Delete this report?"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "You have no reports yet."
+msgstr "You have no reports yet."
+
+msgid "Create your first report"
+msgstr "Create your first report"
+
+msgid "All registered shelters with a set location appear on the map below. Shelter staff can set their location in"
+msgstr "All registered shelters with a set location appear on the map below. Shelter staff can set their location in"
+
+msgid "Edit profile"
+msgstr "Edit profile"
+
+msgid "No shelters registered yet."
+msgstr "No shelters registered yet."
+
+msgid "Verified"
+msgstr "Verified"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Map not available. Shelter can set location in Shelter Dashboard using \"Geocode address to map\"."
+msgstr "Map not available. Shelter can set location in Shelter Dashboard using \"Geocode address to map\"."
+
+msgid "Pets in care"
+msgstr "Pets in care"
+
+msgid "No pets currently listed."
+msgstr "No pets currently listed."
+
+msgid "Contact this shelter"
+msgstr "Contact this shelter"
+
+msgid "Back to directory"
+msgstr "Back to directory"
+
+msgid "Edit shelter"
+msgstr "Edit shelter"
+
+msgid "Edit shelter profile"
+msgstr "Edit shelter profile"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Species"
+msgstr "Species"
+
+msgid "Intake date"
+msgstr "Intake date"
+
+msgid "Back to"
+msgstr "Back to"
+
+msgid "Shelter"
+msgstr "Shelter"
+
+msgid "Add pet"
+msgstr "Add pet"
+
+msgid "Import CSV"
+msgstr "Import CSV"
+
+msgid "View public page"
+msgstr "View public page"
+
+msgid "Shelter pets"
+msgstr "Shelter pets"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Remove this pet?"
+msgstr "Remove this pet?"
+
+msgid "No pets yet."
+msgstr "No pets yet."
+
+msgid "import from CSV"
+msgstr "import from CSV"
+
+msgid "Required columns: species, description, intake_date. You must also provide address or both lat and lng. Optional: external_id, name, breed, color, sex, intake_location_text, status."
+msgstr "Required columns: species, description, intake_date. You must also provide address or both lat and lng. Optional: external_id, name, breed, color, sex, intake_location_text, status."
+
+msgid "Back to dashboard"
+msgstr "Back to dashboard"
+
+msgid "CSV file"
+msgstr "CSV file"
+
+msgid "Upload and preview"
+msgstr "Upload and preview"
+
+msgid "Valid"
+msgstr "Valid"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "No"
+msgstr "No"
+
+msgid "Duplicate prevention: rows with external_id will be skipped if that ID already exists. Rows without external_id are deduplicated by hash."
+msgstr "Duplicate prevention: rows with external_id will be skipped if that ID already exists. Rows without external_id are deduplicated by hash."
+
+msgid "Confirm and import all"
+msgstr "Confirm and import all"
+
+msgid "Upload a different file"
+msgstr "Upload a different file"
+
+msgid "Edit pet"
+msgstr "Edit pet"
+
+msgid "Photo (optional)"
+msgstr "Photo (optional)"
+
+msgid "Reset password"
+msgstr "Reset password"
+
+msgid "Reset your password"
+msgstr "Reset your password"
+
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "Enter your email address and we'll send you a link to reset your password."
+
+msgid "Send reset link"
+msgstr "Send reset link"
+
+msgid "Back to login"
+msgstr "Back to login"
+
+msgid "Email sent"
+msgstr "Email sent"
+
+msgid "Check your email"
+msgstr "Check your email"
+
+msgid "If an account exists with that email, we've sent you a link to reset your password."
+msgstr "If an account exists with that email, we've sent you a link to reset your password."
+
+msgid "Set new password"
+msgstr "Set new password"
+
+msgid "Set password"
+msgstr "Set password"
+
+msgid "The reset link is invalid or has expired. Please request a new one."
+msgstr "The reset link is invalid or has expired. Please request a new one."
+
+msgid "Request new link"
+msgstr "Request new link"
+
+msgid "Password reset complete"
+msgstr "Password reset complete"
+
+msgid "Your password has been set. You can now log in."
+msgstr "Your password has been set. You can now log in."
+
+msgid "Log in"
+msgstr "Log in"
+
+msgid "Import shelter pets (CSV)"
+msgstr "Import shelter pets (CSV)"
+
+msgid "Sex"
+msgstr "Sex"
+
+#: blocktrans
+msgid "Page %(page)s of %(total)s"
+msgstr "Page %(page)s of %(total)s"
+
+msgid "Total rows: %(total)s. Preview (first 10):"
+msgstr "Total rows: %(total)s. Preview (first 10):"

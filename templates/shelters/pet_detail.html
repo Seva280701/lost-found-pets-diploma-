@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+{% block title %}{{ pet.name|default:pet.species }} — {{ pet.shelter.name }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ pet.name|default:pet.species }}</h1>
+        <a href="{% url 'shelters:detail' pet.shelter_id %}" class="btn btn-outline">{{ pet.shelter.name }}</a>
+    </div>
+    <p><strong>{% trans "Species" %}:</strong> {{ pet.species }}{% if pet.breed %} · {{ pet.breed }}{% endif %}</p>
+    {% if pet.color or pet.sex %}
+        <p>{% if pet.color %}{% trans "Color" %}: {{ pet.color }}{% endif %}{% if pet.sex %} · {% trans "Sex" %}: {{ pet.sex }}{% endif %}</p>
+    {% endif %}
+    <p><strong>{% trans "Status" %}:</strong> {{ pet.get_status_display }}</p>
+    {% if pet.intake_date %}
+        <p><strong>{% trans "Intake date" %}:</strong> {{ pet.intake_date|date:"M d, Y" }}</p>
+    {% endif %}
+    {% if pet.description %}<p>{{ pet.description }}</p>{% endif %}
+    {% if pet.image %}
+        <div class="detail-images">
+            <img src="{{ pet.image.url }}" alt="{{ pet.name|default:pet.species }}" style="max-width: 400px;">
+        </div>
+    {% endif %}
+    {% if pet.lat and pet.lng and GOOGLE_MAPS_API_KEY %}
+        <div id="pet-map" class="map-container" data-lat="{{ pet.lat }}" data-lng="{{ pet.lng }}" style="height: 300px;"></div>
+    {% elif pet.lat and pet.lng %}
+        <p class="text-muted">{% trans "Map unavailable (API key not configured)." %}</p>
+    {% endif %}
+    <p><a href="{% url 'shelters:detail' pet.shelter_id %}">&larr; {% trans "Back to" %} {{ pet.shelter.name }}</a></p>
+</div>
+{% if pet.lat and pet.lng and GOOGLE_MAPS_API_KEY %}
+{% block extra_js %}
+<script>
+(function() {
+    var el = document.getElementById('pet-map');
+    if (!el || !window.GOOGLE_MAPS_API_KEY) return;
+    var lat = parseFloat(el.dataset.lat), lng = parseFloat(el.dataset.lng);
+    window._initPetDetailMap = function() {
+        var map = new google.maps.Map(el, { zoom: 14, center: { lat: lat, lng: lng } });
+        new google.maps.Marker({ position: { lat: lat, lng: lng }, map: map });
+    };
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + window.GOOGLE_MAPS_API_KEY + '&callback=_initPetDetailMap';
+    s.async = true;
+    document.head.appendChild(s);
+})();
+</script>
+{% endblock %}
+{% endif %}
+{% endblock %}

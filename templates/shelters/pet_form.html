@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% if pet %}{% trans "Edit pet" %}{% else %}{% trans "Add pet" %}{% endif %} — {{ shelter.name }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{% if pet %}{% trans "Edit pet" %}{% else %}{% trans "Add pet" %}{% endif %}</h1>
+        <a href="{% url 'shelters:dashboard' %}" class="btn btn-outline">{% trans "Cancel" %}</a>
+    </div>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-group">
+            <label>{% trans "Photo (optional)" %}</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">{% if pet %}{% trans "Save" %}{% else %}{% trans "Add pet" %}{% endif %}</button>
+    </form>
+</div>
+{% endblock %}

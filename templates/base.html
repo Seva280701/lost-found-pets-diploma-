@@ -1,0 +1,68 @@
+{% load static %}{% load accounts_tags %}{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "Lost & Found Pets — Latvia" %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="{% url 'core:home' %}" class="logo">{% trans "Lost & Found Pets" %}</a>
+            <nav class="nav-main">
+                <a href="{% url 'core:home' %}">{% trans "Home" %}</a>
+                <a href="{% url 'reports:list' %}">{% trans "Reports" %}</a>
+                <a href="{% url 'shelters:directory' %}">{% trans "Shelters" %}</a>
+                {% if user.is_authenticated %}
+                    {% user_role user as current_role %}
+                    <a href="{% url 'accounts:dashboard' %}">{% trans "My Reports" %}</a>
+                    {% if current_role == 'shelter' and user.owned_shelter %}
+                        <a href="{% url 'shelters:dashboard' %}">{% trans "Shelter Dashboard" %}</a>
+                    {% endif %}
+                    {% if user.is_staff %}
+                        <a href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
+                    {% endif %}
+                    <a href="{% url 'accounts:logout' %}">{% trans "Logout" %} ({{ user.username }})</a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}">{% trans "Login" %}</a>
+                    <a href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
+                {% endif %}
+                <form action="{% url 'set_language' %}" method="post" class="lang-switcher">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                    <select name="language" onchange="this.form.submit()">
+                        {% get_current_language as CURRENT_LANG %}
+                        {% get_available_languages as LANGUAGES_LIST %}
+                        {% for code, name in LANGUAGES_LIST %}
+                            <option value="{{ code }}" {% if code == CURRENT_LANG %}selected{% endif %}>{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </nav>
+        </div>
+    </header>
+    <main class="site-main">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message message-{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {% trans "Lost & Found Pets — Latvian Animal Shelter Integration. Bachelor thesis project." %}</p>
+        </div>
+    </footer>
+    <script>
+        window.STATIC_URL = "{% static '' %}";
+        window.GOOGLE_MAPS_API_KEY = "{{ GOOGLE_MAPS_API_KEY|default:'' }}";
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

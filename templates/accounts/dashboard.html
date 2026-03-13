@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "My Reports" %} — {% trans "Lost & Found Pets" %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{% trans "My Reports" %}</h1>
+        <a href="{% url 'reports:create' %}" class="btn btn-primary">{% trans "Create report" %}</a>
+    </div>
+    {% if reports %}
+        <ul class="report-grid">
+            {% for report in reports %}
+                <li class="report-card">
+                    <a href="{% url 'reports:detail' report.pk %}">
+                        {% if report.images.first %}
+                            <img src="{{ report.images.first.image.url }}" alt="" class="report-card-img">
+                        {% else %}
+                            <div class="report-card-placeholder">{% trans "No photo" %}</div>
+                        {% endif %}
+                        <span class="report-type report-type-{{ report.report_type|lower }}">{{ report.get_report_type_display }}</span>
+                        <strong>{{ report.get_species_display }}{% if report.breed %} — {{ report.breed }}{% endif %}</strong>
+                        <span class="report-location">{{ report.location_text }}</span>
+                        <time>{{ report.created_at|date:"M d, Y" }}</time>
+                    </a>
+                    <div style="padding: 0.5rem;">
+                        <a href="{% url 'reports:edit' report.pk %}" class="btn btn-outline" style="font-size: 0.85rem;">{% trans "Edit" %}</a>
+                        <form method="post" action="{% url 'reports:delete' report.pk %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline" style="font-size: 0.85rem; color: var(--color-lost); border-color: var(--color-lost);" onclick="return confirm('{% trans "Delete this report?" %}');">{% trans "Delete" %}</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans "You have no reports yet." %} <a href="{% url 'reports:create' %}">{% trans "Create your first report" %}</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

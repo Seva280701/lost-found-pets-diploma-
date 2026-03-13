@@ -1,0 +1,422 @@
+# Lost & Found Pets — Latvian (Latviešu)
+msgid ""
+msgstr ""
+"Project-Id-Version: Lost & Found Pets\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-01 00:00+0000\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Latvian\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Lost & Found Pets"
+msgstr "Pazudušie un atrastie mājdzīvnieki"
+
+msgid "Lost & Found Pets — Latvia"
+msgstr "Pazudušie un atrastie mājdzīvnieki — Latvija"
+
+msgid "Lost & Found Pets — Latvian Animal Shelter Integration. Bachelor thesis project."
+msgstr "Pazudušie un atrastie mājdzīvnieki — Latvijas dzīvnieku patversmju integrācija. Bakalaura darbs."
+
+msgid "Home"
+msgstr "Sākums"
+
+msgid "Reports"
+msgstr "Ziņojumi"
+
+msgid "Shelters"
+msgstr "Patversmes"
+
+msgid "My Reports"
+msgstr "Mani ziņojumi"
+
+msgid "Shelter Dashboard"
+msgstr "Patversmes panelis"
+
+msgid "Admin"
+msgstr "Administrācija"
+
+msgid "Logout"
+msgstr "Iziet"
+
+msgid "Login"
+msgstr "Pieslēgties"
+
+msgid "Register"
+msgstr "Reģistrēties"
+
+msgid "One platform to report lost or found pets and connect with Latvian animal shelters."
+msgstr "Viena platforma, lai ziņotu par pazudušiem vai atrastiem mājdzīvniekiem un sazinātos ar Latvijas patversmēm."
+
+msgid "View Lost Pets"
+msgstr "Skatīt pazudušos"
+
+msgid "View Found Pets"
+msgstr "Skatīt atrastos"
+
+msgid "Create Report"
+msgstr "Izveidot ziņojumu"
+
+msgid "Login to Report"
+msgstr "Pieslēdzieties, lai ziņotu"
+
+msgid "Shelter Directory"
+msgstr "Patversmju katalogs"
+
+msgid "Latest Open Reports"
+msgstr "Jaunākie atvērtie ziņojumi"
+
+msgid "No photo"
+msgstr "Nav fotogrāfijas"
+
+msgid "View all reports"
+msgstr "Skatīt visus ziņojumus"
+
+msgid "No open reports yet."
+msgstr "Vēl nav atvērtu ziņojumu."
+
+msgid "Create the first one"
+msgstr "Izveidojiet pirmo"
+
+msgid "after login"
+msgstr "pēc pieslēgšanās"
+
+msgid "Lost & Found Reports"
+msgstr "Pazudušo un atrasto ziņojumi"
+
+msgid "Create report"
+msgstr "Izveidot ziņojumu"
+
+msgid "All types"
+msgstr "Visi veidi"
+
+msgid "Lost"
+msgstr "Pazudis"
+
+msgid "Found"
+msgstr "Atrasts"
+
+msgid "All species"
+msgstr "Visas sugas"
+
+msgid "Dog"
+msgstr "Suns"
+
+msgid "Cat"
+msgstr "Kaķis"
+
+msgid "Other"
+msgstr "Cits"
+
+msgid "All statuses"
+msgstr "Visi statusi"
+
+msgid "Open"
+msgstr "Atvērts"
+
+msgid "Resolved"
+msgstr "Atrisināts"
+
+msgid "City/region"
+msgstr "Pilsēta/reģions"
+
+msgid "Search text"
+msgstr "Meklēt tekstu"
+
+msgid "Filter"
+msgstr "Filtrēt"
+
+msgid "Previous"
+msgstr "Iepriekšējais"
+
+msgid "Next"
+msgstr "Nākamais"
+
+msgid "No reports match your filters."
+msgstr "Nav ziņojumu, kas atbilst filtriem."
+
+msgid "Clear filters"
+msgstr "Notīrīt filtrus"
+
+msgid "or"
+msgstr "vai"
+
+msgid "create a report"
+msgstr "izveidot ziņojumu"
+
+msgid "Edit"
+msgstr "Rediģēt"
+
+msgid "Status"
+msgstr "Statuss"
+
+msgid "Linked shelter"
+msgstr "Saistītā patversme"
+
+msgid "Location"
+msgstr "Atrašanās vieta"
+
+msgid "Date reported"
+msgstr "Ziņošanas datums"
+
+msgid "Color"
+msgstr "Krāsa"
+
+msgid "Map unavailable (API key not configured)."
+msgstr "Karte nav pieejama (API atslēga nav konfigurēta)."
+
+msgid "No map location set. Edit report and use \"Geocode address to map\" to set coordinates."
+msgstr "Kartes atrašanās vieta nav iestatīta. Rediģējiet ziņojumu un izmantojiet \"Ģeokodēt adresi uz karti\"."
+
+msgid "Contact reporter"
+msgstr "Sazināties ar ziņotāju"
+
+msgid "Send message"
+msgstr "Sūtīt ziņojumu"
+
+msgid "Back to reports"
+msgstr "Atpakaļ pie ziņojumiem"
+
+msgid "Edit report"
+msgstr "Rediģēt ziņojumu"
+
+msgid "Create lost/found report"
+msgstr "Izveidot pazuduša/atrasta ziņojumu"
+
+msgid "Cancel"
+msgstr "Atcelt"
+
+msgid "Location on map"
+msgstr "Atrašanās vieta kartē"
+
+msgid "Enter address above and click \"Geocode to map\", or click on the map to set coordinates."
+msgstr "Ievadiet adresi augstāk un noklikšķiniet \"Ģeokodēt uz karti\" vai noklikšķiniet uz kartes."
+
+msgid "Geocode address to map"
+msgstr "Ģeokodēt adresi uz karti"
+
+msgid "Photos"
+msgstr "Fotoattēli"
+
+msgid "recommended — helps others recognize the pet"
+msgstr "ieteicams — palīdz citiem atpazīt mājdzīvnieku"
+
+msgid "Save changes"
+msgstr "Saglabāt izmaiņas"
+
+msgid "Username"
+msgstr "Lietotājvārds"
+
+msgid "Password"
+msgstr "Parole"
+
+msgid "Forgot password?"
+msgstr "Aizmirsāt paroli?"
+
+msgid "Don't have an account?"
+msgstr "Nav konta?"
+
+msgid "Password confirmation"
+msgstr "Paroles apstiprinājums"
+
+msgid "Already have an account?"
+msgstr "Jau ir konts?"
+
+msgid "Delete this report?"
+msgstr "Dzēst šo ziņojumu?"
+
+msgid "Delete"
+msgstr "Dzēst"
+
+msgid "You have no reports yet."
+msgstr "Jums vēl nav ziņojumu."
+
+msgid "Create your first report"
+msgstr "Izveidojiet savu pirmo ziņojumu"
+
+msgid "All registered shelters with a set location appear on the map below. Shelter staff can set their location in"
+msgstr "Visas reģistrētās patversmes ar iestatītu atrašanās vietu ir redzamas kartē. Darbinieki var iestatīt atrašanās vietu sadaļā"
+
+msgid "Edit profile"
+msgstr "Rediģēt profilu"
+
+msgid "No shelters registered yet."
+msgstr "Vēl nav reģistrētu patversmju."
+
+msgid "Verified"
+msgstr "Pārbaudīts"
+
+msgid "Address"
+msgstr "Adrese"
+
+msgid "Phone"
+msgstr "Tālrunis"
+
+msgid "Email"
+msgstr "E-pasts"
+
+msgid "Website"
+msgstr "Tīmekļa vietne"
+
+msgid "Map not available. Shelter can set location in Shelter Dashboard using \"Geocode address to map\"."
+msgstr "Karte nav pieejama. Patversme var iestatīt atrašanās vietu panelī ar \"Ģeokodēt adresi uz karti\"."
+
+msgid "Pets in care"
+msgstr "Aprūpē esošie dzīvnieki"
+
+msgid "No pets currently listed."
+msgstr "Pašlaik nav reģistrētu dzīvnieku."
+
+msgid "Contact this shelter"
+msgstr "Sazināties ar šo patversmi"
+
+msgid "Back to directory"
+msgstr "Atpakaļ pie kataloga"
+
+msgid "Edit shelter"
+msgstr "Rediģēt patversmi"
+
+msgid "Edit shelter profile"
+msgstr "Rediģēt patversmes profilu"
+
+msgid "Save"
+msgstr "Saglabāt"
+
+msgid "Species"
+msgstr "Suga"
+
+msgid "Intake date"
+msgstr "Uzņemšanas datums"
+
+msgid "Back to"
+msgstr "Atpakaļ uz"
+
+msgid "Shelter"
+msgstr "Patversme"
+
+msgid "Add pet"
+msgstr "Pievienot dzīvnieku"
+
+msgid "Import CSV"
+msgstr "Importēt CSV"
+
+msgid "View public page"
+msgstr "Skatīt publisko lapu"
+
+msgid "Shelter pets"
+msgstr "Patversmes dzīvnieki"
+
+msgid "Name"
+msgstr "Vārds"
+
+msgid "Actions"
+msgstr "Darbības"
+
+msgid "Remove this pet?"
+msgstr "Noņemt šo dzīvnieku?"
+
+msgid "No pets yet."
+msgstr "Vēl nav dzīvnieku."
+
+msgid "import from CSV"
+msgstr "importēt no CSV"
+
+msgid "Required columns: species, description, intake_date. You must also provide address or both lat and lng. Optional: external_id, name, breed, color, sex, intake_location_text, status."
+msgstr "Obligātās kolonnas: species, description, intake_date. Jānorāda arī address vai lat un lng. Pēc izvēles: external_id, name, breed, color, sex, intake_location_text, status."
+
+msgid "Back to dashboard"
+msgstr "Atpakaļ pie paneļa"
+
+msgid "CSV file"
+msgstr "CSV fails"
+
+msgid "Upload and preview"
+msgstr "Augšupielādēt un priekšskatīt"
+
+msgid "Valid"
+msgstr "Derīgs"
+
+msgid "Error"
+msgstr "Kļūda"
+
+msgid "Yes"
+msgstr "Jā"
+
+msgid "No"
+msgstr "Nē"
+
+msgid "Duplicate prevention: rows with external_id will be skipped if that ID already exists. Rows without external_id are deduplicated by hash."
+msgstr "Dublējumu novēršana: rindas ar external_id tiek izlaistas, ja ID jau eksistē. Rindas bez external_id tiek atdalītas pēc hash."
+
+msgid "Confirm and import all"
+msgstr "Apstiprināt un importēt visu"
+
+msgid "Upload a different file"
+msgstr "Augšupielādēt citu failu"
+
+msgid "Edit pet"
+msgstr "Rediģēt dzīvnieku"
+
+msgid "Photo (optional)"
+msgstr "Foto (pēc izvēles)"
+
+msgid "Reset password"
+msgstr "Atiestatīt paroli"
+
+msgid "Reset your password"
+msgstr "Atiestatiet paroli"
+
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "Ievadiet e-pastu, un mēs nosūtīsim saiti paroles atiestatīšanai."
+
+msgid "Send reset link"
+msgstr "Sūtīt atiestatīšanas saiti"
+
+msgid "Back to login"
+msgstr "Atpakaļ pie pieslēgšanās"
+
+msgid "Email sent"
+msgstr "E-pasts nosūtīts"
+
+msgid "Check your email"
+msgstr "Pārbaudiet e-pastu"
+
+msgid "If an account exists with that email, we've sent you a link to reset your password."
+msgstr "Ja konts ar šādu e-pastu pastāv, mēs nosūtījām saiti paroles atiestatīšanai."
+
+msgid "Set new password"
+msgstr "Iestatīt jaunu paroli"
+
+msgid "Set password"
+msgstr "Iestatīt paroli"
+
+msgid "The reset link is invalid or has expired. Please request a new one."
+msgstr "Saites termiņš ir beidzies vai tā ir nederīga. Lūdzu, pieprasiet jaunu."
+
+msgid "Request new link"
+msgstr "Pieprasīt jaunu saiti"
+
+msgid "Password reset complete"
+msgstr "Parole atiestatīta"
+
+msgid "Your password has been set. You can now log in."
+msgstr "Jūsu parole ir iestatīta. Tagad varat pieslēgties."
+
+msgid "Log in"
+msgstr "Pieslēgties"
+
+msgid "Import shelter pets (CSV)"
+msgstr "Importēt patversmes dzīvniekus (CSV)"
+
+msgid "Sex"
+msgstr "Dzimums"
+
+msgid "Page %(page)s of %(total)s"
+msgstr "Lapa %(page)s no %(total)s"
+
+msgid "Total rows: %(total)s. Preview (first 10):"
+msgstr "Rindu skaits: %(total)s. Priekšskatījums (pirmās 10):"

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Shelter Dashboard" %} — {{ shelter.name }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{% trans "Shelter" %}: {{ shelter.name }}</h1>
+        <div>
+            <a href="{% url 'shelters:shelter_edit' %}" class="btn btn-outline">{% trans "Edit profile" %}</a>
+            <a href="{% url 'shelters:pet_create' %}" class="btn btn-primary">{% trans "Add pet" %}</a>
+            <a href="{% url 'shelters:csv_import' %}" class="btn btn-accent">{% trans "Import CSV" %}</a>
+        </div>
+    </div>
+    <p><a href="{% url 'shelters:detail' shelter.pk %}">{% trans "View public page" %}</a></p>
+    <h2>{% trans "Shelter pets" %}</h2>
+    {% if shelter.pets.all %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>{% trans "Name" %}</th><th>{% trans "Species" %}</th><th>{% trans "Status" %}</th><th>{% trans "Intake date" %}</th><th>{% trans "Actions" %}</th></tr>
+                </thead>
+                <tbody>
+                    {% for pet in shelter.pets.all %}
+                        <tr>
+                            <td>{{ pet.name|default:"—" }}</td>
+                            <td>{{ pet.species }}{% if pet.breed %} ({{ pet.breed }}){% endif %}</td>
+                            <td>{{ pet.get_status_display }}</td>
+                            <td>{{ pet.intake_date|date:"Y-m-d"|default:"—" }}</td>
+                            <td>
+                                <a href="{% url 'shelters:pet_edit' pet.pk %}" class="btn btn-outline" style="font-size: 0.85rem;">{% trans "Edit" %}</a>
+                                <form method="post" action="{% url 'shelters:pet_delete' pet.pk %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline" style="font-size: 0.85rem; color: var(--color-lost);" onclick="return confirm('{% trans "Remove this pet?" %}');">{% trans "Delete" %}</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>{% trans "No pets yet." %} <a href="{% url 'shelters:pet_create' %}">{% trans "Add a pet" %}</a> {% trans "or" %} <a href="{% url 'shelters:csv_import' %}">{% trans "import from CSV" %}</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

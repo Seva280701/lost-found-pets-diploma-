@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+{% block title %}{{ shelter.name }} — {% trans "Shelters" %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ shelter.name }}</h1>
+        {% if shelter.verified %}<span class="badge">{% trans "Verified" %}</span>{% endif %}
+    </div>
+    {% if shelter.description %}<p>{{ shelter.description }}</p>{% endif %}
+    <p><strong>{% trans "Address" %}:</strong> {{ shelter.address }}, {{ shelter.city }}{% if shelter.region %}, {{ shelter.region }}{% endif %}</p>
+    {% if shelter.phone %}<p><strong>{% trans "Phone" %}:</strong> {{ shelter.phone }}</p>{% endif %}
+    {% if shelter.email %}<p><strong>{% trans "Email" %}:</strong> {{ shelter.email }}</p>{% endif %}
+    {% if shelter.website %}<p><a href="{{ shelter.website }}" target="_blank" rel="noopener">{% trans "Website" %}</a></p>{% endif %}
+    {% if shelter.lat and shelter.lng %}
+        {% if GOOGLE_MAPS_API_KEY %}
+            <div id="shelter-map" class="map-container" data-lat="{{ shelter.lat }}" data-lng="{{ shelter.lng }}" style="height: 300px;"></div>
+        {% else %}
+            <p class="text-muted">{% trans "Map unavailable (API key not configured)." %}</p>
+        {% endif %}
+    {% else %}
+        <p class="text-muted">{% trans "Map not available. Shelter can set location in Shelter Dashboard using \"Geocode address to map\"." %}</p>
+    {% endif %}
+    <h2>{% trans "Pets in care" %}</h2>
+    {% if pets %}
+        <ul class="report-grid">
+            {% for pet in pets %}
+                <li class="report-card">
+                    <a href="{% url 'shelters:pet_detail' pet.pk %}">
+                        {% if pet.image %}
+                            <img src="{{ pet.image.url }}" alt="" class="report-card-img">
+                        {% else %}
+                            <div class="report-card-placeholder">{{ pet.species }}</div>
+                        {% endif %}
+                        <strong>{{ pet.name|default:pet.species }}</strong>
+                        <span>{{ pet.species }}{% if pet.breed %} — {{ pet.breed }}{% endif %}</span>
+                        <span>{% trans "Status" %}: {{ pet.get_status_display }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans "No pets currently listed." %}</p>
+    {% endif %}
+    <hr>
+    <h2>{% trans "Contact this shelter" %}</h2>
+    <form method="post" action="{% url 'shelters:shelter_contact' shelter.pk %}" class="form-group">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans "Send message" %}</button>
+    </form>
+    <p><a href="{% url 'shelters:directory' %}">&larr; {% trans "Back to directory" %}</a></p>
+</div>
+{% endblock %}
+{% if shelter.lat and shelter.lng and GOOGLE_MAPS_API_KEY %}
+{% block extra_js %}
+<script>
+(function() {
+    var el = document.getElementById('shelter-map');
+    if (!el || !window.GOOGLE_MAPS_API_KEY) return;
+    var lat = parseFloat(el.dataset.lat), lng = parseFloat(el.dataset.lng), title = '{{ shelter.name|escapejs }}';
+    window._initShelterDetailMap = function() {
+        var map = new google.maps.Map(el, { zoom: 14, center: { lat: lat, lng: lng } });
+        new google.maps.Marker({ position: { lat: lat, lng: lng }, map: map, title: title });
+    };
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + window.GOOGLE_MAPS_API_KEY + '&callback=_initShelterDetailMap';
+    s.async = true;
+    document.head.appendChild(s);
+})();
+</script>
+{% endblock %}
+{% endif %}

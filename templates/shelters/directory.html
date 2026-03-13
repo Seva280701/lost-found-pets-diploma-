@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+{% block title %}{% trans "Shelter Directory" %} — {% trans "Lost & Found Pets" %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header"><h1>{% trans "Shelter Directory" %}</h1></div>
+    {% if shelters %}
+        <ul class="shelter-list">
+            {% for s in shelters %}
+                <li class="shelter-card">
+                    <a href="{% url 'shelters:detail' s.pk %}">
+                        <strong>{{ s.name }}</strong>
+                        <span>{{ s.city }}{% if s.region %}, {{ s.region }}{% endif %}</span>
+                        <span>{{ s.address }}</span>
+                        {% if s.verified %}<span class="badge">{% trans "Verified" %}</span>{% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="text-muted map-hint">{% trans "All registered shelters with a set location appear on the map below. Shelter staff can set their location in" %} <strong>{% trans "Shelter Dashboard" %} → {% trans "Edit profile" %} → {% trans "Geocode address to map" %}</strong>.</p>
+        <div id="shelters-map" class="map-container" style="height: 400px; margin-top: 1rem;"></div>
+    {% else %}
+        <p>{% trans "No shelters registered yet." %}</p>
+    {% endif %}
+</div>
+{% if shelters and GOOGLE_MAPS_API_KEY %}
+<script>var sheltersMapData = {{ shelters_json|safe }};</script>
+{% endif %}
+{% endblock %}
+{% block extra_js %}
+{% if shelters and GOOGLE_MAPS_API_KEY %}
+<script>
+(function() {
+    var el = document.getElementById('shelters-map');
+    if (!el || !window.GOOGLE_MAPS_API_KEY || typeof sheltersMapData === 'undefined') return;
+    var shelters = sheltersMapData || [];
+    function init() {
+        var map = new google.maps.Map(el, { zoom: 7, center: { lat: 56.9496, lng: 24.1052 } });
+        var markers = [];
+        var bounds = new google.maps.LatLngBounds();
+        shelters.forEach(function(s) {
+            if (s.lat && s.lng) {
+                var lat = parseFloat(s.lat), lng = parseFloat(s.lng);
+                if (lat && lng) {
+                    var pos = { lat: lat, lng: lng };
+                    var m = new google.maps.Marker({ position: pos, map: map, title: s.name });
+                    markers.push(m);
+                    bounds.extend(pos);
+                }
+            }
+        });
+        if (markers.length > 0) {
+            if (markers.length === 1) {
+                map.setCenter(markers[0].getPosition());
+                map.setZoom(12);
+            } else {
+                map.fitBounds(bounds);
+            }
+        }
+    }
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + window.GOOGLE_MAPS_API_KEY + '&callback=window._initSheltersMap';
+    s.async = true;
+    document.head.appendChild(s);
+    window._initSheltersMap = init;
+})();
+</script>
+{% endif %}
+{% endblock %}

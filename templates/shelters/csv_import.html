@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Import CSV" %} — {{ shelter.name }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{% trans "Import shelter pets (CSV)" %}</h1>
+        <a href="{% url 'shelters:dashboard' %}" class="btn btn-outline">{% trans "Back to dashboard" %}</a>
+    </div>
+    <p>{% trans "Required columns: species, description, intake_date. You must also provide address or both lat and lng. Optional: external_id, name, breed, color, sex, intake_location_text, status." %}</p>
+    {% if not preview %}
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>{% trans "CSV file" %}</label>
+                <input type="file" name="csv_file" accept=".csv" required>
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans "Upload and preview" %}</button>
+        </form>
+    {% else %}
+        <p>{% blocktrans with total=total_rows %}Total rows: {{ total }}. Preview (first 10):{% endblocktrans %}</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{% trans "Valid" %}</th>
+                        <th>{% trans "Error" %}</th>
+                        {% for h in headers %}
+                            <th>{{ h }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in preview %}
+                        <tr>
+                            <td>{{ item.index }}</td>
+                            <td>{% if item.valid %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}</td>
+                            <td>{{ item.error|default:"—" }}</td>
+                            {% for cell in item.cells %}
+                                <td>{{ cell|default:"" }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p>{% trans "Duplicate prevention: rows with external_id will be skipped if that ID already exists. Rows without external_id are deduplicated by hash." %}</p>
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="hidden" name="confirm_import" value="1">
+            <button type="submit" class="btn btn-accent">{% trans "Confirm and import all" %}</button>
+        </form>
+        <p><a href="{% url 'shelters:csv_import' %}">{% trans "Upload a different file" %}</a></p>
+    {% endif %}
+</div>
+{% endblock %}

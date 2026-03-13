@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+
+{% block title %}{% trans "Home" %} — {% trans "Lost & Found Pets" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="hero">
+        <h1>{% trans "Lost & Found Pets — Latvia" %}</h1>
+        <p>{% trans "One platform to report lost or found pets and connect with Latvian animal shelters." %}</p>
+        <div class="hero-actions">
+            <a href="{% url 'reports:list' %}?type=LOST" class="btn btn-primary">{% trans "View Lost Pets" %}</a>
+            <a href="{% url 'reports:list' %}?type=FOUND" class="btn btn-secondary">{% trans "View Found Pets" %}</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'reports:create' %}" class="btn btn-accent">{% trans "Create Report" %}</a>
+            {% else %}
+                <a href="{% url 'accounts:login' %}" class="btn btn-accent">{% trans "Login to Report" %}</a>
+            {% endif %}
+            <a href="{% url 'shelters:directory' %}" class="btn btn-outline">{% trans "Shelter Directory" %}</a>
+        </div>
+    </section>
+
+    <section class="latest-reports">
+        <h2>{% trans "Latest Open Reports" %}</h2>
+        {% if latest_reports %}
+            <ul class="report-grid">
+                {% for report in latest_reports %}
+                    <li class="report-card">
+                        <a href="{% url 'reports:detail' report.pk %}">
+                            {% if report.images.first %}
+                                <img src="{{ report.images.first.image.url }}" alt="" class="report-card-img">
+                            {% else %}
+                                <div class="report-card-placeholder">{% trans "No photo" %}</div>
+                            {% endif %}
+                            <span class="report-type report-type-{{ report.report_type|lower }}">{{ report.get_report_type_display }}</span>
+                            <strong>{{ report.get_species_display }}{% if report.breed %} — {{ report.breed }}{% endif %}</strong>
+                            <span class="report-location">{{ report.location_text }}</span>
+                            <time>{{ report.created_at|date:"M d, Y" }}</time>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p><a href="{% url 'reports:list' %}">{% trans "View all reports" %} &rarr;</a></p>
+        {% else %}
+            <p>{% trans "No open reports yet." %} <a href="{% url 'reports:create' %}">{% trans "Create the first one" %}</a> ({% trans "after login" %}).</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+{% block title %}{% trans "Reports" %} — {% trans "Lost & Found Pets" %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{% trans "Lost & Found Reports" %}</h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'reports:create' %}" class="btn btn-primary">{% trans "Create report" %}</a>
+        {% endif %}
+    </div>
+    <form method="get" action="{% url 'reports:list' %}" class="filter-bar">
+        <select name="type">
+            <option value="">{% trans "All types" %}</option>
+            <option value="LOST" {% if filters.type == 'LOST' %}selected{% endif %}>{% trans "Lost" %}</option>
+            <option value="FOUND" {% if filters.type == 'FOUND' %}selected{% endif %}>{% trans "Found" %}</option>
+        </select>
+        <select name="species">
+            <option value="">{% trans "All species" %}</option>
+            <option value="dog" {% if filters.species == 'dog' %}selected{% endif %}>{% trans "Dog" %}</option>
+            <option value="cat" {% if filters.species == 'cat' %}selected{% endif %}>{% trans "Cat" %}</option>
+            <option value="other" {% if filters.species == 'other' %}selected{% endif %}>{% trans "Other" %}</option>
+        </select>
+        <select name="status">
+            <option value="">{% trans "All statuses" %}</option>
+            <option value="OPEN" {% if filters.status == 'OPEN' %}selected{% endif %}>{% trans "Open" %}</option>
+            <option value="RESOLVED" {% if filters.status == 'RESOLVED' %}selected{% endif %}>{% trans "Resolved" %}</option>
+        </select>
+        <input type="text" name="city" placeholder="{% trans 'City/region' %}" value="{{ filters.city }}">
+        <input type="text" name="q" placeholder="{% trans 'Search text' %}" value="{{ filters.q }}">
+        <button type="submit" class="btn btn-primary">{% trans "Filter" %}</button>
+    </form>
+    {% if reports %}
+        <ul class="report-grid">
+            {% for report in reports %}
+                <li class="report-card">
+                    <a href="{% url 'reports:detail' report.pk %}">
+                        {% if report.images.first %}
+                            <img src="{{ report.images.first.image.url }}" alt="" class="report-card-img">
+                        {% else %}
+                            <div class="report-card-placeholder">{% trans "No photo" %}</div>
+                        {% endif %}
+                        <span class="report-type report-type-{{ report.report_type|lower }}">{{ report.get_report_type_display }}</span>
+                        <strong>{{ report.get_species_display }}{% if report.breed %} — {{ report.breed }}{% endif %}</strong>
+                        <span class="report-location">{{ report.location_text }}</span>
+                        <time>{{ report.created_at|date:"M d, Y" }}</time>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if page_obj.has_other_pages %}
+            <nav class="pagination" aria-label="Reports pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}{% if filters.type %}&type={{ filters.type }}{% endif %}{% if filters.species %}&species={{ filters.species }}{% endif %}{% if filters.status %}&status={{ filters.status }}{% endif %}{% if filters.city %}&city={{ filters.city }}{% endif %}{% if filters.q %}&q={{ filters.q }}{% endif %}" class="btn btn-outline">{% trans "Previous" %}</a>
+                {% endif %}
+                <span class="pagination-info">{% blocktrans with page=page_obj.number total=page_obj.paginator.num_pages %}Page {{ page }} of {{ total }}{% endblocktrans %}</span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% if filters.type %}&type={{ filters.type }}{% endif %}{% if filters.species %}&species={{ filters.species }}{% endif %}{% if filters.status %}&status={{ filters.status }}{% endif %}{% if filters.city %}&city={{ filters.city }}{% endif %}{% if filters.q %}&q={{ filters.q }}{% endif %}" class="btn btn-outline">{% trans "Next" %}</a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    {% else %}
+        <p>{% trans "No reports match your filters." %} <a href="{% url 'reports:list' %}">{% trans "Clear filters" %}</a> {% trans "or" %} <a href="{% url 'reports:create' %}">{% trans "create a report" %}</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

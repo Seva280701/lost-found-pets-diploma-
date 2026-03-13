@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+{% block title %}{{ report.get_report_type_display }} — {{ report.get_species_display }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ report.get_report_type_display }} — {{ report.get_species_display }}{% if report.breed %} ({{ report.breed }}){% endif %}</h1>
+        {% if can_edit %}
+            <a href="{% url 'reports:edit' report.pk %}" class="btn btn-outline">{% trans "Edit" %}</a>
+        {% endif %}
+    </div>
+    <p><span class="report-type report-type-{{ report.report_type|lower }}">{{ report.get_report_type_display }}</span> · {% trans "Status" %}: {{ report.get_status_display }}</p>
+    {% if report.linked_shelter %}
+        <p><strong>{% trans "Linked shelter" %}:</strong> <a href="{% url 'shelters:detail' report.linked_shelter_id %}">{{ report.linked_shelter.name }}</a></p>
+    {% endif %}
+    {% if report.images.all %}
+        <div class="detail-images">
+            {% for img in report.images.all %}
+                <img src="{{ img.image.url }}" alt="">
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p><strong>{% trans "Location" %}:</strong> {{ report.location_text }}</p>
+    {% if report.date_time_reported %}
+        <p><strong>{% trans "Date reported" %}:</strong> {{ report.date_time_reported|date:"M d, Y H:i" }}</p>
+    {% endif %}
+    {% if report.color or report.size or report.sex %}
+        <p>{% if report.color %}{% trans "Color" %}: {{ report.color }}{% endif %}
+           {% if report.size %} · Size: {{ report.get_size_display }}{% endif %}
+           {% if report.sex %} · Sex: {{ report.get_sex_display }}{% endif %}</p>
+    {% endif %}
+    <p>{{ report.description }}</p>
+
+    {% if report.lat and report.lng %}
+        {% if GOOGLE_MAPS_API_KEY %}
+            <div id="map" class="map-container" data-lat="{{ report.lat }}" data-lng="{{ report.lng }}" data-label="{{ report.get_report_type_display }}"></div>
+        {% else %}
+            <p class="text-muted">{% trans "Map unavailable (API key not configured)." %} {% trans "Location" %}: {{ report.lat }}, {{ report.lng }}</p>
+        {% endif %}
+    {% else %}
+        <p class="text-muted">{% trans "No map location set. Edit report and use \"Geocode address to map\" to set coordinates." %}</p>
+    {% endif %}
+
+    <hr>
+    <h2>{% trans "Contact reporter" %}</h2>
+    <form method="post" action="{% url 'reports:contact' report.pk %}" class="form-group">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans "Send message" %}</button>
+    </form>
+    <p><a href="{% url 'reports:list' %}">&larr; {% trans "Back to reports" %}</a></p>
+</div>
+{% if report.lat and report.lng and GOOGLE_MAPS_API_KEY %}
+{% block extra_js %}
+<script>
+(function() {
+    var mapEl = document.getElementById('map');
+    if (!mapEl || !window.GOOGLE_MAPS_API_KEY) return;
+    var lat = parseFloat(mapEl.dataset.lat), lng = parseFloat(mapEl.dataset.lng), label = mapEl.dataset.label || '';
+    function initMap() {
+        var center = { lat: lat, lng: lng };
+        var map = new google.maps.Map(mapEl, { zoom: 14, center: center });
+        new google.maps.Marker({ position: center, map: map, title: label });
+    }
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + window.GOOGLE_MAPS_API_KEY + '&callback=initMap';
+    script.async = true;
+    document.head.appendChild(script);
+    window.initMap = initMap;
+})();
+</script>
+{% endblock %}
+{% endif %}
+{% endblock %}

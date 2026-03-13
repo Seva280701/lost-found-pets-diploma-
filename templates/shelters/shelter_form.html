@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Edit shelter" %} — {{ shelter.name }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{% trans "Edit shelter profile" %}</h1>
+        <a href="{% url 'shelters:dashboard' %}" class="btn btn-outline">{% trans "Cancel" %}</a>
+    </div>
+    <form method="post" action="" id="shelter-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-group">
+            <label>{% trans "Location on map" %}</label>
+            <button type="button" id="geocode-shelter-btn" class="btn btn-outline">{% trans "Geocode address to map" %}</button>
+            <div id="shelter-map-picker" class="map-container" style="height: 300px; margin-top: 0.5rem;"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+    </form>
+</div>
+{% block extra_js %}
+<script>
+(function() {
+    var latInput = document.getElementById('id_shelter_lat'), lngInput = document.getElementById('id_shelter_lng');
+    var addrInput = document.getElementById('id_address');
+    var mapEl = document.getElementById('shelter-map-picker');
+    if (!window.GOOGLE_MAPS_API_KEY || !mapEl) return;
+    var currentLat = latInput && latInput.value ? parseFloat(latInput.value) : 56.9496;
+    var currentLng = lngInput && lngInput.value ? parseFloat(lngInput.value) : 24.1052;
+    var map, marker;
+    function updateInputs(lat, lng) {
+        if (latInput) latInput.value = lat;
+        if (lngInput) lngInput.value = lng;
+        if (marker) marker.setPosition({ lat: lat, lng: lng });
+    }
+    function init() {
+        map = new google.maps.Map(mapEl, { zoom: 12, center: { lat: currentLat, lng: currentLng } });
+        marker = new google.maps.Marker({ position: { lat: currentLat, lng: currentLng }, map: map, draggable: true });
+        map.addListener('click', function(e) { updateInputs(e.latLng.lat(), e.latLng.lng()); });
+        marker.addListener('dragend', function() { var p = marker.getPosition(); updateInputs(p.lat(), p.lng()); });
+    }
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + window.GOOGLE_MAPS_API_KEY + '&callback=window._initShelterFormMap';
+    s.async = true;
+    document.head.appendChild(s);
+    window._initShelterFormMap = function() {
+        init();
+        var geocodeBtn = document.getElementById('geocode-shelter-btn');
+        if (geocodeBtn) geocodeBtn.addEventListener('click', function() {
+            var addr = (document.getElementById('id_address').value || '') + ', Latvia';
+            if (!addr.trim()) return;
+            fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(addr) + '&key=' + window.GOOGLE_MAPS_API_KEY)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.status === 'OK' && data.results[0]) {
+                        var loc = data.results[0].geometry.location;
+                        updateInputs(loc.lat, loc.lng);
+                        if (map) map.setCenter({ lat: loc.lat, lng: loc.lng });
+                    }
+                });
+        });
+    };
+})();
+</script>
+{% endblock %}
+{% endblock %}
