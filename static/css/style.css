@@ -103,3 +103,10 @@ th { background: var(--color-bg); font-weight: 600; }
 .pagination-info { font-size: 0.9rem; color: var(--color-text-muted); }
 .text-muted { color: var(--color-text-muted); font-size: 0.9rem; }
 .map-hint { margin-top: 0.5rem; margin-bottom: 0; font-size: 0.875rem; }
+
+.btn-sm { padding: 0.25rem 0.5rem; font-size: 0.8rem; }
+.form-text { font-size: 0.875rem; color: var(--color-text-muted); margin: 0.25rem 0 0.5rem; }
+.report-edit-photos { list-style: none; padding: 0; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+.report-edit-photos li { display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+.report-edit-photo-thumb { width: 120px; height: 120px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--color-border); }
+.report-photo-delete-form { margin: 0; }

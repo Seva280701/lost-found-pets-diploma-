@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:pk>/contact/', views.contact_request_create, name='contact'),
     path('<int:pk>/edit/', views.report_edit, name='edit'),
     path('<int:pk>/delete/', views.report_delete, name='delete'),
+    path('<int:pk>/photos/<int:photo_pk>/delete/', views.report_photo_delete, name='photo_delete'),
 ]

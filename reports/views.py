@@ -140,7 +140,7 @@ def report_create(request):
 @require_http_methods(['GET', 'POST'])
 def report_edit(request, pk):
     """Edit report — only owner or admin."""
-    report = get_object_or_404(PetReport, pk=pk)
+    report = get_object_or_404(PetReport.objects.prefetch_related('images'), pk=pk)
     if not _can_edit_report(request.user, report):
         return HttpResponseForbidden('You cannot edit this report.')
     if request.method == 'POST':
@@ -167,3 +167,16 @@ def report_delete(request, pk):
     report.delete()
     messages.success(request, 'Report deleted.')
     return redirect('accounts:dashboard')
+
+
+@login_required
+@require_POST
+def report_photo_delete(request, pk, photo_pk):
+    """Remove one photo from a report (owner or admin only)."""
+    report = get_object_or_404(PetReport, pk=pk)
+    if not _can_edit_report(request.user, report):
+        return HttpResponseForbidden('You cannot edit this report.')
+    photo = get_object_or_404(PetImage, pk=photo_pk, report=report)
+    photo.delete()
+    messages.success(request, 'Photo removed.')
+    return redirect('reports:edit', pk=report.pk)

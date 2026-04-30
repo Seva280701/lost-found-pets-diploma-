@@ -19,6 +19,27 @@
         </div>
         <div class="form-group">
             <label>{% trans "Photos" %} <span class="label-important">({% trans "recommended — helps others recognize the pet" %})</span></label>
+            {% if report %}
+                {% with images=report.images.all %}
+                    {% if images %}
+                        <p class="form-text">{% trans "Current photos (click Remove to delete):" %}</p>
+                        <ul class="report-edit-photos">
+                            {% for img in images %}
+                                <li>
+                                    <img src="{{ img.image.url }}" alt="" class="report-edit-photo-thumb">
+                                    <form method="post" action="{% url 'reports:photo_delete' report.pk img.pk %}" class="report-photo-delete-form">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline btn-sm">{% trans "Remove" %}</button>
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="form-text">{% trans "No photos yet. Add some below." %}</p>
+                    {% endif %}
+                {% endwith %}
+                <p class="form-text">{% trans "Add more photos:" %}</p>
+            {% endif %}
             <input type="file" name="images" multiple accept="image/*">
         </div>
         <button type="submit" class="btn btn-primary">{% if report %}{% trans "Save changes" %}{% else %}{% trans "Create report" %}{% endif %}</button>
@@ -34,6 +55,8 @@
     var locationInput = document.getElementById('id_location_text');
     var mapEl = document.getElementById('map-picker');
     var map, marker;
+    var geocoder;
+    var lastReverseGeocodeAt = 0;
     var defaultLat = 56.9496, defaultLng = 24.1052;
     var currentLat = latInput && latInput.value ? parseFloat(latInput.value) : defaultLat;
     var currentLng = lngInput && lngInput.value ? parseFloat(lngInput.value) : defaultLng;
@@ -44,17 +67,40 @@
         if (lngInput) lngInput.value = Number(lng).toFixed(6);
         if (marker) marker.setPosition({ lat: lat, lng: lng });
     }
+
+    function maybeReverseGeocode(lat, lng) {
+        if (!locationInput) return;
+        // Don't overwrite if the user already typed something meaningful.
+        if (locationInput.value && locationInput.value.trim().length >= 6) return;
+        if (!geocoder) return;
+        // Basic rate limiting to avoid too many requests when clicking/dragging quickly.
+        var now = Date.now();
+        if (now - lastReverseGeocodeAt < 900) return;
+        lastReverseGeocodeAt = now;
+
+        geocoder.geocode({ location: { lat: lat, lng: lng } }, function(results, status) {
+            if (status === 'OK' && results && results[0] && results[0].formatted_address) {
+                locationInput.value = results[0].formatted_address;
+            }
+        });
+    }
+
     function initMapPicker() {
         if (!window.GOOGLE_MAPS_API_KEY || !mapEl) return;
+        geocoder = new google.maps.Geocoder();
         var center = { lat: currentLat, lng: currentLng };
         map = new google.maps.Map(mapEl, { zoom: 12, center: center });
         marker = new google.maps.Marker({ position: center, map: map, draggable: true });
         map.addListener('click', function(e) {
-            updateInputs(e.latLng.lat(), e.latLng.lng());
+            var lat = e.latLng.lat(), lng = e.latLng.lng();
+            updateInputs(lat, lng);
+            maybeReverseGeocode(lat, lng);
         });
         marker.addListener('dragend', function() {
             var p = marker.getPosition();
-            updateInputs(p.lat(), p.lng());
+            var lat = p.lat(), lng = p.lng();
+            updateInputs(lat, lng);
+            maybeReverseGeocode(lat, lng);
         });
     }
     if (window.GOOGLE_MAPS_API_KEY) {
